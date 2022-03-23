@@ -1,0 +1,36 @@
+server {
+    listen 80 default_server;
+    server_name TODO_YOUR_DOMAIN;
+
+    # This location serves all Vouch Proxy endpoints as /vp_in_a_path/$uri
+    #   including /vp_in_a_path/validate, /vp_in_a_path/login, /vp_in_a_path/logout, /vp_in_a_path/auth, /vp_in_a_path/auth/$STATE, etc
+    location /vp_in_a_path {
+      proxy_pass http://127.0.0.1:9090; # must not! have a slash at the end
+      proxy_set_header Host $http_host;
+      proxy_pass_request_body off;
+      proxy_set_header Content-Length "";
+
+      # these return values are used by the @error401 call
+      auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+      auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+      auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+    }
+
+    # if /vp_in_a_path/validate returns `401 not authorized` then forward the request to the error401block
+    error_page 401 = @error401;
+
+    location @error401 {
+        # redirect to Vouch Proxy for login
+        return 302 https://TODO_YOUR_DOMAIN/vp_in_a_path/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+    }
+
+    location / {
+      # Vouch Proxy's /validate endpoint handles auth
+      auth_request /vp_in_a_path/validate;
+
+      # Chaos Genius runs on 8080. Everything other than /vp_in_a_path is passed here.
+      proxy_pass http://0.0.0.0:8080;
+    }
+
+    # TODO_SSL_CONFIG: SSL/TLS config - to be setup using Certbot or similar
+}

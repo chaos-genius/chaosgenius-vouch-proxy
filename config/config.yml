@@ -1,0 +1,29 @@
+# Vouch Proxy configuration
+# bare minimum to get Vouch Proxy running with google
+
+vouch:
+  domains:
+  - chaosgenius.io
+
+  # path/location on which vouch-proxy is deployed
+  document_root: "/vp_in_a_path"
+
+  cookie:
+    # allow the jwt/cookie to be set into http://yourdomain.com (defaults to true, requiring https://yourdomain.com) 
+    secure: true
+    #  domain: yourdomain.com
+
+
+oauth:
+  provider: google
+  # get credentials from...
+  # https://console.developers.google.com/apis/credentials
+
+  client_id: TODO_FILL_THIS
+  client_secret: TODO_FILL_THIS
+
+  # Google may require callback_urls (redirect URIs) to be 'https'
+  callback_urls: 
+    - https://TODO_YOUR_DOMAIN/vp_in_a_path/auth
+  preferredDomain: chaosgenius.io # be careful with this option, it may conflict with chrome on Android
+  # endpoints are set from https://godoc.org/golang.org/x/oauth2/google
