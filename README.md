@@ -18,7 +18,7 @@ git clone https://github.com/chaos-genius/chaosgenius-vouch-proxy.git
 
 1. Obtain Google API client ID and client secret from here: https://console.cloud.google.com/apis/credentials
 1. Open [`config/config.yml`](config/config.yml) and replace the following:
-    - `TODO_YOUR_DOMAIN`: the domain name of email addresses that need to be allowed access. Anyone with an email address in this domain will be able to access Chaos Genius. To only allow a fixed set of emails, see the `whiteList` option under `vouch`.
+    - `TODO_YOUR_DOMAIN`: the domain name of email addresses that need to be allowed access. Anyone with an email address in this domain will be able to access Chaos Genius. To only allow a fixed set of emails, add whitelisted ids in the `whiteList` option under `vouch`.
     - `TODO_CLIENT_ID` and `TODO_CLIENT_SECRET`: the credentials obtained in step 1.
     - `TODO_YOUR_SUB_DOMAIN`: the subdomain where Chaos Genius and Vouch Proxy will be set up (same as Pre-requisites step 2).
 1. Change the redirect URI in the google console (found in credentials tab) to the first value in `callback_urls` (after replacing `TODO_YOUR_SUB_DOMAIN`)
