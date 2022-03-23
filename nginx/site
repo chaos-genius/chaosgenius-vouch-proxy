@@ -1,6 +1,6 @@
 server {
     listen 80 default_server;
-    server_name TODO_YOUR_DOMAIN;
+    server_name TODO_YOUR_SUB_DOMAIN;
 
     # This location serves all Vouch Proxy endpoints as /vp_in_a_path/$uri
     #   including /vp_in_a_path/validate, /vp_in_a_path/login, /vp_in_a_path/logout, /vp_in_a_path/auth, /vp_in_a_path/auth/$STATE, etc
@@ -21,7 +21,7 @@ server {
 
     location @error401 {
         # redirect to Vouch Proxy for login
-        return 302 https://TODO_YOUR_DOMAIN/vp_in_a_path/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
+        return 302 https://TODO_YOUR_SUB_DOMAIN/vp_in_a_path/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err;
     }
 
     location / {

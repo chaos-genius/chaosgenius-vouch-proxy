@@ -3,7 +3,7 @@
 
 vouch:
   domains:
-  - chaosgenius.io
+  - TODO_YOUR_DOMAIN
 
   # path/location on which vouch-proxy is deployed
   document_root: "/vp_in_a_path"
@@ -19,11 +19,11 @@ oauth:
   # get credentials from...
   # https://console.developers.google.com/apis/credentials
 
-  client_id: TODO_FILL_THIS
-  client_secret: TODO_FILL_THIS
+  client_id: TODO_CLIENT_ID
+  client_secret: TODO_CLIENT_SECRET
 
   # Google may require callback_urls (redirect URIs) to be 'https'
   callback_urls: 
-    - https://TODO_YOUR_DOMAIN/vp_in_a_path/auth
-  preferredDomain: chaosgenius.io # be careful with this option, it may conflict with chrome on Android
+    - https://TODO_YOUR_SUB_DOMAIN/vp_in_a_path/auth
+  preferredDomain: TODO_YOUR_DOMAIN # be careful with this option, it may conflict with chrome on Android
   # endpoints are set from https://godoc.org/golang.org/x/oauth2/google
