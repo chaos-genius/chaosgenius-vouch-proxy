@@ -5,6 +5,11 @@ vouch:
   domains:
   - TODO_YOUR_DOMAIN
 
+  # uncomment the following to allow only certain emails
+  # leave it commented to allow all emails in the subdomain
+  # whiteList:
+  #   - some_user@TODO_YOUR_DOMAIN
+
   # path/location on which vouch-proxy is deployed
   document_root: "/vp_in_a_path"
 
