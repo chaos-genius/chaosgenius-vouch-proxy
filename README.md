@@ -2,10 +2,11 @@
 
 ## Pre-requisites
 
-1. On the server where Chaos Genius is running, install these:
+1. Server Access (where Chaos Genius is running) to install these:
     - Docker
     - nginx
-1. A (sub-)domain name to host Chaos Genius and Vouch proxy with HTTPS. The domain's A record should point to the above server.
+2. A (sub-)domain name to host Chaos Genius and Vouch proxy with HTTPS. The domain's A record should point to the above server.
+3. Google API Client ID and Client Secret
 
 ## Setup
 
